@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{--bg:#06060c;--tx:#f4f5fb;--mu:#a3a8c3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{margin:0;background:var(--bg);color:var(--tx);color-scheme:dark;font-family:-apple-system,"SF Pro Display",Inter,system-ui,"Segoe UI",sans-serif}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.5;z-index:0;animation:float 16s ease-in-out infinite alternate;pointer-events:none}
+@keyframes float{to{transform:translate(70px,-60px) scale(1.25)}}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04));-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(255,255,255,.04),0 20px 50px rgba(0,0,0,.45);border-radius:28px}
+.btn{padding:.65rem 1.1rem;border-radius:999px;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.4);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-weight:600;color:var(--tx);cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.1))}
+.btn:active{transform:scale(.94)}
+.btn.pri{background:linear-gradient(135deg,rgba(94,231,255,.5),rgba(167,139,250,.5))}
+.btn:disabled{opacity:.4;pointer-events:none}
+.fade{animation:fade .55s both}
+@keyframes fade{from{opacity:0;transform:translateY(16px) scale(.98)}}
+@keyframes shake{25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+.shake{animation:shake .35s}
+@keyframes pop{50%{transform:scale(1.07)}}
+@keyframes bob{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.6)}}
+.bar{display:flex;flex-direction:column;align-items:center;padding:8px 2px;border-radius:22px 22px 14px 14px;background:linear-gradient(180deg,hsl(var(--c) 90% 70% / .55),hsl(var(--c) 80% 45% / .16));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 30px rgba(0,0,0,.35);transition:transform .18s ease-out,box-shadow .3s,border-color .3s}
+.bar.pv{border-color:#c084fc;box-shadow:0 0 0 2px #c084fc,0 0 30px #c084fc88}
+.bar.sel{border-color:#5ee7ff;box-shadow:0 0 0 2px #5ee7ff,0 0 30px #5ee7ff99}
+.bar.ok{border-color:#4ade80;box-shadow:0 0 26px #4ade8088}
+select{background:rgba(255,255,255,.1);color:var(--tx);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.55rem 1rem;font-weight:600}
+select option{background:#14141f}
+input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:.75rem 1.2rem;color:var(--tx);outline:none;width:100%}
+
+.bar{perspective:700px;position:relative}
+.ind{position:absolute;left:50%;padding:1px 9px;border-radius:999px;font-size:10px;font-weight:800;white-space:nowrap;z-index:3;animation:indb 1.2s ease-in-out infinite;transform:translateX(-50%)}
+.pvi{background:#a855f7;color:#fff;box-shadow:0 0 14px #a855f7aa}
+.vai{background:#14b8a6;color:#04201c;box-shadow:0 0 14px #14b8a6aa}
+@keyframes indb{50%{transform:translateX(-50%) translateY(-4px)}}
+.flip{position:relative;flex:1;width:100%;transform-style:preserve-3d;transition:transform .3s ease-out}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.back{transform:rotateY(180deg);justify-content:center;font-size:1.4rem;opacity:.6;border-radius:14px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.08) 0 6px,transparent 6px 12px)}
+
+/* yellow step outline is an overlay, so it never hides or blocks the selection ring or clicks */
+.bar.hl0::after,.bar.hl1::after{content:'';position:absolute;inset:-3px;border-radius:inherit;border:2px solid #ffcf5c;box-shadow:0 0 30px #ffcf5cbb;pointer-events:none;opacity:0}
+.bar.hl0::after{animation:hlA 1.6s ease-out}
+.bar.hl1::after{animation:hlB 1.6s ease-out}
+@keyframes hlA{0%{opacity:1}100%{opacity:0}}
+@keyframes hlB{0%{opacity:1}100%{opacity:0}}
